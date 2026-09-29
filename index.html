@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gardner Classroom</title>
+<meta name="description" content="Mr. Gardner's classroom resources for Choir, Guitar, and Stagecraft.">
+<style>
+:root{--navy:#17365d;--blue:#285f9e;--red:#b3262e;--bg:#f5f7fb;--text:#17202a;--muted:#5b6673;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:56px 20px 48px;border-bottom:6px solid var(--red)}
+.wrap{max-width:1050px;margin:auto}h1{font-size:clamp(2.2rem,6vw,4.4rem);margin:0 0 10px;letter-spacing:-.04em}header p{font-size:1.15rem;max-width:650px;margin:0;opacity:.94}
+main{padding:36px 20px 56px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid #dfe5ec;border-radius:18px;padding:24px;box-shadow:0 8px 22px rgba(20,40,70,.06);display:flex;flex-direction:column;min-height:220px}
+.card h2{margin:0 0 9px;color:var(--navy)}.card p{color:var(--muted);line-height:1.5;flex:1}
+.btn{display:inline-block;text-decoration:none;background:var(--navy);color:white;padding:12px 16px;border-radius:10px;font-weight:700;text-align:center}.btn:hover{background:var(--blue)}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;background:#e9eef6;color:var(--navy);padding:5px 9px;border-radius:999px;margin-bottom:14px;width:max-content}
+footer{padding:28px 20px;color:var(--muted);text-align:center;font-size:.9rem}
+.notice{background:#fff7e6;border:1px solid #f1d18a;padding:14px 16px;border-radius:12px;margin-bottom:26px;color:#5b4815}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Gardner Classroom</h1>
+<p>Classroom resources, assessments, and practice tools for Mr. Gardner's classes.</p>
+</div></header>
+<main><div class="wrap">
+<div class="notice">Choose your class below. Student tools on this site do not require a ChatGPT account.</div>
+<div class="grid">
+<section class="card"><span class="tag">Intro to Guitar</span><h2>Guitar</h2><p>Chord benchmarks, practice activities, and course resources.</p><a class="btn" href="/guitar/benchmark/">Open Guitar Benchmark</a></section>
+<section class="card"><span class="tag">Choir</span><h2>Choir</h2><p>Sight-reading, music theory, rehearsal resources, and assessments.</p><span class="btn" style="opacity:.55;cursor:default">Resources coming next</span></section>
+<section class="card"><span class="tag">CTE</span><h2>Stagecraft</h2><p>Safety, technical theatre, lighting, sound, and stagecraft assessments.</p><span class="btn" style="opacity:.55;cursor:default">Resources coming next</span></section>
+</div>
+</div></main>
+<footer>Gardner Classroom · Classroom use only</footer>
+</body>
+</html>
