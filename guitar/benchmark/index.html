@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guitar Chord Benchmark | Gardner Classroom</title>
+<style>
+:root{--navy:#17365d;--blue:#285f9e;--red:#b3262e;--bg:#f4f6f9;--ok:#137333;--bad:#b3261e}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:#18212b}
+header{background:var(--navy);color:white;padding:22px 18px;border-bottom:5px solid var(--red)}.wrap{max-width:840px;margin:auto}
+h1{margin:0;font-size:1.7rem}.sub{opacity:.85;margin-top:4px}
+main{padding:28px 18px 60px}.card{background:white;border:1px solid #dce2e9;border-radius:15px;padding:22px;margin:0 0 18px;box-shadow:0 5px 16px rgba(0,0,0,.04)}
+label{font-weight:700;display:block;margin-bottom:7px}input[type=text]{width:100%;padding:12px;border:1px solid #b9c2cc;border-radius:9px;font-size:1rem}
+.q{margin:24px 0}.q p{font-weight:700;margin-bottom:10px}.choice{display:block;padding:9px 10px;border-radius:8px;margin:4px 0}.choice:hover{background:#f3f6fa}
+button{border:0;background:var(--navy);color:#fff;padding:13px 18px;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer}button:hover{background:var(--blue)}
+#result{display:none}.score{font-size:2rem;font-weight:900;color:var(--navy)}.good{color:var(--ok)}.bad{color:var(--bad)}
+.small{font-size:.9rem;color:#5c6670}.playing{background:#eef4fb;border-left:5px solid var(--blue)}a{color:var(--blue)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Guitar Chord Benchmark</h1><div class="sub">Gardner Classroom · Intro to Guitar</div></div></header>
+<main><div class="wrap">
+<div class="card">
+<label for="student">Student name</label><input id="student" type="text" autocomplete="name" placeholder="First and last name">
+<p class="small">Answer the written questions first. Your playing portion will be scored separately by Mr. Gardner.</p>
+</div>
+<form id="quiz" class="card">
+<div id="questions"></div>
+<button type="submit">Submit Written Benchmark</button>
+</form>
+<div id="result" class="card"></div>
+<div class="card playing"><h2>Playing Portion</h2><p>Your playing assessment is completed with Mr. Gardner. Be prepared to demonstrate the required chords and chord progression.</p><p><strong>Progression:</strong> G – D – Em – C, repeated twice.</p></div>
+<p><a href="/">← Gardner Classroom home</a></p>
+</div></main>
+<script>
+const bank=[
+{q:"Which string order shows standard guitar tuning from the 6th string to the 1st string?",o:["E A D G B E","E B G D A E","A D G B E A","D A D G B E"],a:0},
+{q:"Which chord is a minor chord?",o:["C","G","D","Em"],a:3},
+{q:"Which chord below uses the notes commonly taught as a basic open C chord shape?",o:["C","D","Em","G"],a:0},
+{q:"Which chord comes second in the progression G – D – Em – C?",o:["C","D","Em","G"],a:1},
+{q:"What should your fretting hand do to help a chord sound clean?",o:["Lay fingers flat across all strings","Press close behind the fret with fingertips","Press directly on top of the fret wire","Keep every finger touching every string"],a:1},
+{q:"What is the best first step when changing between two difficult chords?",o:["Play faster","Practice the change slowly and accurately","Skip one chord","Strum harder"],a:1},
+{q:"Which chord is the fourth chord in G – D – Em – C?",o:["Am","C","D","Em"],a:1},
+{q:"Which chord contains the letter m because it is minor?",o:["Am","C","D","G"],a:0},
+{q:"If a string buzzes, what should you check first?",o:["Whether your finger is pressing firmly and near the fret","Whether the guitar is too loud","Whether you are using a pick","Whether your foot is tapping"],a:0},
+{q:"When strumming a steady rhythm, what is most important?",o:["Changing tempo often","Keeping a consistent beat","Strumming as loudly as possible","Looking at the audience"],a:1}
+];
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+const questions=shuffle(bank);
+const holder=document.getElementById("questions");
+questions.forEach((item,i)=>{
+ const answers=item.o.map((t,idx)=>({t,correct:idx===item.a}));
+ const mixed=shuffle(answers);
+ const block=document.createElement("div"); block.className="q";
+ block.innerHTML="<p>"+(i+1)+". "+item.q+"</p>"+mixed.map((x,j)=>'<label class="choice"><input required type="radio" name="q'+i+'" value="'+(x.correct?"1":"0")+'"> '+x.t+"</label>").join("");
+ holder.appendChild(block);
+});
+document.getElementById("quiz").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=document.getElementById("student").value.trim();
+ if(!name){alert("Please enter your name.");document.getElementById("student").focus();return}
+ let correct=0;
+ questions.forEach((_,i)=>{const v=document.querySelector('input[name="q'+i+'"]:checked'); if(v&&v.value==="1")correct++});
+ const pts=correct*3, max=30, pct=Math.round(pts/max*100);
+ const r=document.getElementById("result"); r.style.display="block";
+ r.innerHTML='<div class="score">'+pts+' / '+max+' written points</div><p><strong>'+name+'</strong>, you answered '+correct+' of '+questions.length+' written questions correctly.</p><p>Your written portion has been recorded only on this screen. Show this result to Mr. Gardner when instructed.</p><p class="small">Your final benchmark score also includes the playing portion.</p>';
+ r.scrollIntoView({behavior:"smooth"});
+});
+</script>
+</body>
+</html>
