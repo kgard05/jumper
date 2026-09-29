@@ -1,0 +1,7 @@
+{
+  "name": "gardner-benchmark-api",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-29",
+  "routes": [{"pattern": "api.gardnerclassroom.com", "custom_domain": true}],
+  "d1_databases": [{"binding": "DB", "database_name": "gardner-benchmark-results", "database_id": "567d1303-57c9-4511-b7df-1a96b37ae29b"}]
+}
